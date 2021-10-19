@@ -1,0 +1,24 @@
+{
+    "name" : "camoo/module-smobilpay",
+    "description": "Multiple payments gateways.",
+    "license": "proprietary",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Camoo",
+            "email": "e-commerce@camoo.sarl",
+            "homepage": "https://camoo.cm",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "alpha",
+    "require" : {
+        "camoo/enkap-oauth": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Camoo\\Enkap\\": ""
+        }
+    }
+}

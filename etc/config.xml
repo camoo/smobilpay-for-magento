@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Camoo
+ * @package     Camoo_Enkap
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <custompayment>
+                <active>1</active>
+                <model>Camoo\Enkap\Model\PaymentMethod</model>
+                <order_status>pending</order_status>
+                <title>E-nkap Payment</title>
+                <public>Ywz6RgbFM4h8Nux9OZf2h5HQeJca</public>
+                <private>wPN5rgBHwd8L6Ww7PNDxI3e_IMoa</private>
+                <sandbox>1</sandbox>
+                <allowspecific>0</allowspecific>
+                <group>offline</group>
+            </custompayment>
+        </payment>
+    </default>
+</config>

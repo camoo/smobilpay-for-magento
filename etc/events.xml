@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Camoo
+ * @package     Camoo_Enkap
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="sales_order_payment_save_before">
+        <observer name="camoo_enkap_before_save_order_payment" instance="Camoo\Enkap\Observer\SalesOrderPaymentBeforeSavedObserver"/>
+    </event>
+    <event name="admin_system_config_changed_section_payment">
+        <observer name="custom_admin_system_config_changed_section_payment" instance="Camoo\Enkap\Observer\ConfigObserver"/>
+    </event>
+</config>
