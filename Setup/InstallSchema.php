@@ -11,6 +11,8 @@
 
 namespace Camoo\Enkap\Setup;
 
+use Magento\Framework\DB\Ddl\Table;
+
 class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
 {
     /**
@@ -22,7 +24,7 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     public function install(
-        \Magento\Framework\Setup\SchemaSetupInterface $setup, 
+        \Magento\Framework\Setup\SchemaSetupInterface $setup,
         \Magento\Framework\Setup\ModuleContextInterface $context
     ) {
         $installer = $setup;
@@ -35,7 +37,7 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
                     $tableName,
                     'order_transaction_id',
                     [
-                        'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                        'type' => Table::TYPE_TEXT,
                         'nullable' => true,
                         'default' => null,
                         'comment' => 'Added by Izipresta for the Enkap Payment',
@@ -48,7 +50,7 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
                     $tableName,
                     'merchant_reference',
                     [
-                        'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                        'type' => Table::TYPE_TEXT,
                         'nullable' => true,
                         'default' => null,
                         'comment' => 'Added by Izipresta for the Enkap Payment',
@@ -66,7 +68,7 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
                     $tableName,
                     'order_transaction_id',
                     [
-                        'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                        'type' => Table::TYPE_TEXT,
                         'nullable' => true,
                         'default' => null,
                         'comment' => 'Added by Izipresta for the Enkap Payment',
@@ -79,7 +81,7 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
                     $tableName,
                     'merchant_reference',
                     [
-                        'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                        'type' => Table::TYPE_TEXT,
                         'nullable' => true,
                         'default' => null,
                         'comment' => 'Added by Izipresta for the Enkap Payment',

@@ -2,7 +2,9 @@
 
 namespace Camoo\Enkap\Model\Config\Source;
 
-class Sandbox implements \Magento\Framework\Data\OptionSourceInterface
+use Magento\Framework\Data\OptionSourceInterface;
+
+class Sandbox implements OptionSourceInterface
 {
     public function toOptionArray()
     {

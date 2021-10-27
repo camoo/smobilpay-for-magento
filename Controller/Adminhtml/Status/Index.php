@@ -2,15 +2,15 @@
 
 namespace Camoo\Enkap\Controller\Adminhtml\Status;
 
-require_once __DIR__ . '/../../../vendor/autoload.php';
+require_once dirname(__DIR__, 3) .'/vendor/autoload.php';
 
-use \Magento\Framework\App\Action\HttpGetActionInterface;
-use \Magento\Framework\Controller\Result\RedirectFactory;
-use \Magento\Framework\App\RequestInterface;
-use \Enkap\OAuth\Services\PaymentService;
-use \Camoo\Enkap\Helper\Credentials;
+use Magento\Framework\App\Action\HttpGetActionInterface;
+use Magento\Framework\Controller\Result\RedirectFactory;
+use Magento\Framework\App\RequestInterface;
+use Enkap\OAuth\Services\PaymentService;
+use Camoo\Enkap\Helper\Credentials;
 
-class Index implements HttpGetActionInterface 
+class Index implements HttpGetActionInterface
 {
     /**
      * @var \Magento\Framework\Controller\Result\RedirectFactory;
@@ -42,7 +42,7 @@ class Index implements HttpGetActionInterface
         $sandbox = !$this->credentials->getGeneralConfig('sandbox') ? false : true;
 
         $order_id = $this->request->getParam('order_id');
-        
+
         if($order_id){
             $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
             $order = $objectManager->create('Magento\Sales\Model\Order')->load($order_id);
@@ -50,7 +50,7 @@ class Index implements HttpGetActionInterface
             if($order_transaction_id){
                 $paymentService = new PaymentService($key, $secret, [], $sandbox);
                 $payment = $paymentService->getByTransactionId($order_transaction_id);
-    
+
                 // Update your database
                 $order->setStatus(strtolower($payment->getPaymentStatus()));
                 $order->save();

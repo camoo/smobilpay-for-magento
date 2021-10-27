@@ -2,8 +2,8 @@
 
 namespace Camoo\Enkap\Helper;
 
-use \Magento\Framework\App\Helper\AbstractHelper;
-use \Magento\Store\Model\ScopeInterface;
+use Magento\Framework\App\Helper\AbstractHelper;
+use Magento\Store\Model\ScopeInterface;
 
 class Credentials extends AbstractHelper
 {

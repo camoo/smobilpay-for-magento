@@ -14,7 +14,7 @@
          xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Payment:etc/payment.xsd">
     <groups>
         <group id="offline">
-            <label>E-nkap Payment Methods</label>
+            <label>SmobilPay for e-commerce Methods</label>
         </group>
     </groups>
     <methods>

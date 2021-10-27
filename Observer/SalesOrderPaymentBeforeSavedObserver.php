@@ -11,17 +11,20 @@
 
 namespace Camoo\Enkap\Observer;
 
-class SalesOrderPaymentBeforeSavedObserver implements \Magento\Framework\Event\ObserverInterface
+use Magento\Framework\Event\Observer;
+use Magento\Framework\Event\ObserverInterface;
+
+class SalesOrderPaymentBeforeSavedObserver implements ObserverInterface
 {
-    public function execute(\Magento\Framework\Event\Observer $observer)
+    public function execute(Observer $observer)
     {
         $payment = $observer->getEvent()->getPayment();
 
         if (empty($payment)) {
             return $this;
         }
-        
-        if ($payment->getMethod() != 'custompayment') {
+
+        if ($payment->getMethod() !== 'custompayment') {
             return $this;
         }
 

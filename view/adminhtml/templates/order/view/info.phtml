@@ -30,7 +30,7 @@ $customerUrl = $block->getCustomerViewUrl();
 
 $allowedAddressHtmlTags = ['b', 'br', 'em', 'i', 'li', 'ol', 'p', 'strong', 'sub', 'sup', 'ul'];
 ?>
- 
+
 <section class="admin__page-section order-view-account-information">
     <div class="admin__page-section-title">
         <span class="title"><?= $block->escapeHtml(__('Order & Account Information')) ?></span>
@@ -66,7 +66,7 @@ $allowedAddressHtmlTags = ['b', 'br', 'em', 'i', 'li', 'ol', 'p', 'strong', 'sub
                     <td><span id="order_status"><?= $block->escapeHtml($order->getStatusLabel()) ?></span></td>
                 </tr>
                 <?= $block->getChildHtml() ?>
-                <?php if ($block->isSingleStoreMode() == false) : ?>
+                <?php if ($block->isSingleStoreMode() === false) : ?>
                     <tr>
                         <th><?= $block->escapeHtml(__('Purchased From')) ?></th>
                         <td><?= $block->escapeHtml($block->getOrderStoreName(), ['br']) ?></td>
@@ -112,19 +112,19 @@ $allowedAddressHtmlTags = ['b', 'br', 'em', 'i', 'li', 'ol', 'p', 'strong', 'sub
                 <?php endif; ?>
                 <?php if ($block->getOrderTransactionId($order) && $block->getMerchantReference($order)) : ?>
                     <tr>
-                        <th><?= $block->escapeHtml(__('E-nkap Transaction ID')) ?></th>
+                        <th><?= $block->escapeHtml(__('smobilpay Transaction ID')) ?></th>
                         <td><?= $block->getOrderTransactionId($order) ?></td>
                     </tr>
                 <?php endif; ?>
                 <?php if ($block->getOrderTransactionId($order) && $block->getMerchantReference($order)) : ?>
                     <tr>
-                        <th><?= $block->escapeHtml(__('E-nkap Merchant Reference')) ?></th>
+                        <th><?= $block->escapeHtml(__('smobilpay Merchant Reference')) ?></th>
                         <td><?= $block->getMerchantReference($order) ?></td>
                     </tr>
                 <?php endif; ?>
                 <?php if ($block->getOrderTransactionId($order) && $block->getMerchantReference($order)) : ?>
                     <tr>
-                        <th><?= $block->escapeHtml(__('E-nkap Payment Status')) ?></th>
+                        <th><?= $block->escapeHtml(__('SmobilPay Payment Status')) ?></th>
                         <td><?= $block->escapeHtml($order->getStatusLabel()) ?></td>
                     </tr>
                 <?php endif; ?>
@@ -134,7 +134,7 @@ $allowedAddressHtmlTags = ['b', 'br', 'em', 'i', 'li', 'ol', 'p', 'strong', 'sub
                 <a href="<?= $block->getCustomOrderUrl($order) ?>">
                     <span><?= $block->escapeHtml(__('Refresh status')) ?></span>
                 </a>
-            </div>             
+            </div>
         </div>
 
         <div class="admin__page-section-item order-account-information">

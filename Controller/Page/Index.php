@@ -2,19 +2,20 @@
 
 namespace Camoo\Enkap\Controller\Page;
 
-require_once __DIR__ . '/../../vendor/autoload.php';
+require_once dirname(__DIR__, 3) .'/vendor/autoload.php';
 
-use \Magento\Framework\App\Action\HttpGetActionInterface;
-use \Magento\Framework\Controller\Result\RedirectFactory;
-use \Enkap\OAuth\Services\OrderService;
-use \Enkap\OAuth\Model\Order;
-use \Camoo\Enkap\Helper\Credentials;
 
-class Index implements HttpGetActionInterface 
+use Magento\Framework\App\Action\HttpGetActionInterface;
+use Magento\Framework\Controller\Result\RedirectFactory;
+use Enkap\OAuth\Services\OrderService;
+use Enkap\OAuth\Model\Order;
+use Camoo\Enkap\Helper\Credentials;
+
+class Index implements HttpGetActionInterface
 {
     protected $redirectFactory;
     protected $credentials;
-  
+
     public function __construct(RedirectFactory $redirectFactory, Credentials $credentials) {
         $this->redirectFactory = $redirectFactory;
         $this->credentials = $credentials;
@@ -29,7 +30,7 @@ class Index implements HttpGetActionInterface
 
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 
-        $sessionObj = $objectManager->get('\Magento\Checkout\Model\Type\Onepage'); 
+        $sessionObj = $objectManager->get('\Magento\Checkout\Model\Type\Onepage');
         $session = $sessionObj->getCheckout();
         $shopOrder = $session->getLastRealOrder();
 
@@ -41,9 +42,9 @@ class Index implements HttpGetActionInterface
             $product['particulars'] = $item->getName();
             $product['unitCost'] = (int)$item->getPrice();
             $product['quantity'] = (int)$item->getQtyOrdered();
-            $products[] = $product;         
+            $products[] = $product;
         }
-        
+
         $orderService = new OrderService($key, $secret, [], $sandbox);
         $order = $orderService->loadModel(Order::class);
         $merchantReference = uniqid('secure', true);
@@ -61,7 +62,7 @@ class Index implements HttpGetActionInterface
             $order->fromStringArray($data);
             $response = $orderService->place($order);
 
-            // Save references into your Database 
+            // Save references into your Database
             $shopOrder->setOrderTransactionId($response->getOrderTransactionId());
             $shopOrder->setMerchantReference($merchantReference);
             $shopOrder->setStatus(\Magento\Sales\Model\Order::STATE_PENDING_PAYMENT);
@@ -69,9 +70,9 @@ class Index implements HttpGetActionInterface
 
             $redirect = $this->redirectFactory->create();
             $redirect->setUrl($response->getRedirectUrl());
-            
+
             return $redirect;
-            
+
         } catch (\Throwable $e) {
             var_dump($e->getMessage());
         }
