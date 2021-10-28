@@ -20,7 +20,7 @@ class Info extends \Magento\Sales\Block\Adminhtml\Order\View\Info
      * @param  Order $order
      * @return string
      */
-    public function getOrderTransactionId(Order $order): string
+    public function getOrderTransactionId(Order $order): ?string
     {
         $objectManager = ObjectManager::getInstance();
         /** @var Smobilpay $paymentTransaction */
@@ -28,7 +28,7 @@ class Info extends \Magento\Sales\Block\Adminhtml\Order\View\Info
        return $paymentTransaction->getOrderTransactionId();
     }
 
-    public function getMerchantReference(Order $order): string
+    public function getMerchantReference(Order $order): ?string
     {
         $objectManager = ObjectManager::getInstance();
         /** @var Smobilpay $paymentTransaction */

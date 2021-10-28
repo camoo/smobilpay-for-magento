@@ -111,7 +111,7 @@ class Smobilpay extends AbstractModel implements SmobilpayInterface
      *
      * @return string
      */
-    public function getMerchantReferenceId(): string
+    public function getMerchantReferenceId(): ?string
     {
         return $this->getData(self::MERCHANT_REFERENCE);
     }
@@ -129,7 +129,7 @@ class Smobilpay extends AbstractModel implements SmobilpayInterface
      *
      * @return string
      */
-    public function getOrderTransactionId(): string
+    public function getOrderTransactionId(): ?string
     {
         return $this->getData(self::ORDER_TRANSACTION_ID);
     }
@@ -147,7 +147,7 @@ class Smobilpay extends AbstractModel implements SmobilpayInterface
      *
      * @return string
      */
-    public function getStatus(): string
+    public function getStatus(): ?string
     {
         return $this->getData(self::STATUS);
     }
