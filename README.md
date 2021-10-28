@@ -9,7 +9,7 @@ The usage of this plugin is completely free. You have to just have an SmobilPay 
 * [Sign up](https://enkap.cm/) for a free account
 * Ask SmobilPay Team for consumerKey and consumerSecret
 
-#About the Smobilpay for e-Commerce Plugin
+# About the Smobilpay for e-Commerce Plugin
 Smobilpay for e-commerce is an online payment service aggregator that allows web users and e-Commerce merchants to buy and sell on the Internet using international and all existing local payment methods in Cameroon.
 We enable digital organizations to accept cash, Mobile Money, or card payment via a simple, unique API permitting local businesses to participate in the vast digital economy by transforming their service offerings into the world of e-commerce sites.
 
