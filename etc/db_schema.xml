@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="smobilpay_payment_transaction" resource="default" engine="innodb"
+           comment="SmobilPay Pay-flow Link Payment Transaction">
+        <column xsi:type="int" name="id" unsigned="true" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="int" name="order_id" unsigned="true" nullable="true"
+                comment="Order ID"/>
+        <column xsi:type="varchar" name="merchant_reference_id" nullable="true" length="100" comment="Merchant ID"/>
+        <column xsi:type="varchar" name="order_transaction_id" nullable="true" length="100" comment="Txn ID"/>
+        <column xsi:type="varchar" name="status" nullable="true" length="50" comment="status Information"/>
+        <column xsi:type="varbinary" name="remote_ip" nullable="true" length="64" comment="Remote Ip Information"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="true" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="true" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="SMOBILPAY_PAYMENT_TRANSACTION_TXN_ID">
+            <column name="order_transaction_id"/>
+        </constraint>
+    </table>
+
+</schema>

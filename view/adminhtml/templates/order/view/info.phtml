@@ -15,13 +15,13 @@ $orderCurrencyCode = (string)$order->getOrderCurrencyCode();
 
 $orderAdminDate = $block->formatDate(
     $block->getOrderAdminDate($order->getCreatedAt()),
-    \IntlDateFormatter::MEDIUM,
+    IntlDateFormatter::MEDIUM,
     true
 );
 
 $orderStoreDate = $block->formatDate(
     $order->getCreatedAt(),
-    \IntlDateFormatter::MEDIUM,
+    IntlDateFormatter::MEDIUM,
     true,
     $block->getTimezoneForStore($order->getStore())
 );

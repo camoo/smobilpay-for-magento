@@ -12,20 +12,23 @@
 namespace Camoo\Enkap\Setup;
 
 use Magento\Framework\DB\Ddl\Table;
+use Magento\Framework\Setup\InstallSchemaInterface;
+use Magento\Framework\Setup\ModuleContextInterface;
+use Magento\Framework\Setup\SchemaSetupInterface;
 
-class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
+class InstallSchema implements InstallSchemaInterface
 {
     /**
      * Install tables
      *
-     * @param \Magento\Framework\Setup\SchemaSetupInterface $setup
-     * @param \Magento\Framework\Setup\ModuleContextInterface $context
+     * @param SchemaSetupInterface $setup
+     * @param ModuleContextInterface $context
      * @return void
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     public function install(
-        \Magento\Framework\Setup\SchemaSetupInterface $setup,
-        \Magento\Framework\Setup\ModuleContextInterface $context
+        SchemaSetupInterface $setup,
+        ModuleContextInterface $context
     ) {
         $installer = $setup;
         $installer->startSetup();
@@ -40,7 +43,7 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
                         'type' => Table::TYPE_TEXT,
                         'nullable' => true,
                         'default' => null,
-                        'comment' => 'Added by Izipresta for the Enkap Payment',
+                        'comment' => 'Added by Camoo for the Enkap Payment',
                         'length' => 255
                     ]
                 );
@@ -53,7 +56,7 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
                         'type' => Table::TYPE_TEXT,
                         'nullable' => true,
                         'default' => null,
-                        'comment' => 'Added by Izipresta for the Enkap Payment',
+                        'comment' => 'Added by Camoo for the Enkap Payment',
                         'length' => 255
                     ]
                 );
@@ -71,7 +74,7 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
                         'type' => Table::TYPE_TEXT,
                         'nullable' => true,
                         'default' => null,
-                        'comment' => 'Added by Izipresta for the Enkap Payment',
+                        'comment' => 'Added by Camoo for the Enkap Payment',
                         'length' => 255
                     ]
                 );
@@ -84,7 +87,7 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
                         'type' => Table::TYPE_TEXT,
                         'nullable' => true,
                         'default' => null,
-                        'comment' => 'Added by Izipresta for the Enkap Payment',
+                        'comment' => 'Added by Camoo for the Enkap Payment',
                         'length' => 255
                     ]
                 );

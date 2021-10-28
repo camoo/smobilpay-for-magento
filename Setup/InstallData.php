@@ -9,6 +9,7 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Sales\Model\Order\StatusFactory;
 use Magento\Sales\Model\ResourceModel\Order\StatusFactory as StatusResourceFactory;
 
+
 class InstallData implements InstallDataInterface
 {
     const STATUS_CONFIRMED = 'confirmed';

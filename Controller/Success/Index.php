@@ -2,7 +2,7 @@
 
 namespace Camoo\Enkap\Controller\Success;
 
-require_once __DIR__ . '/../../vendor/autoload.php';
+require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
 
 use \Magento\Framework\App\Action\HttpGetActionInterface;
 use \Magento\Framework\Controller\Result\RedirectFactory;
@@ -10,7 +10,7 @@ use \Magento\Framework\App\RequestInterface;
 use \Enkap\OAuth\Services\StatusService;
 use \Camoo\Enkap\Helper\Credentials;
 
-class Index implements HttpGetActionInterface 
+class Index implements HttpGetActionInterface
 {
     /**
      * @var \Magento\Framework\Controller\Result\RedirectFactory;
@@ -40,7 +40,7 @@ class Index implements HttpGetActionInterface
         $secret = $this->credentials->getGeneralConfig('private');
 
         $sandbox = !$this->credentials->getGeneralConfig('sandbox') ? false : true;
- 
+
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         $order = $objectManager->create('Magento\Sales\Model\Order')->load(array_key_first($this->request->getParams()), 'merchant_reference');
         $order_transaction_id = $order->getOrderTransactionId();
