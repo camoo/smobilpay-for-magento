@@ -17,7 +17,6 @@
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
-                <!--data provider name which used in grid ui component file -->
                 <item name="smobilpay_record_grid_list_data_source" xsi:type="string">Camoo\Enkap\Model\ResourceModel\Smobilpay\Collection</item>
             </argument>
         </arguments>

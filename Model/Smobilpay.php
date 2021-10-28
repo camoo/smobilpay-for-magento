@@ -12,10 +12,8 @@ use Magento\Framework\Model\Context;
 use Magento\Framework\Model\ResourceModel\AbstractResource;
 use Magento\Framework\Registry;
 
-# \Magento\Payment\Model\Method\AbstractMethod
 class Smobilpay extends AbstractModel implements SmobilpayInterface
 {
-    protected $_code = 'custompayment';
     /**
      * @var RemoteAddress
      */
@@ -167,7 +165,7 @@ class Smobilpay extends AbstractModel implements SmobilpayInterface
      */
     public function getClientIp(): string
     {
-        return $this->getData(self::STATUS);
+        return $this->getData(self::CLIENT_IP);
     }
 
     /**

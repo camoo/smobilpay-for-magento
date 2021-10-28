@@ -55,7 +55,7 @@ class RouterNotify implements RouterInterface
                 'order_id' => 'first_value'
             ]);
 
-            return $this->actionFactory->create(Forward::class, ['request' => $request]);
+            return $this->actionFactory->create(Forward::class);
         }
 
         return null;

@@ -2,7 +2,7 @@
 
 namespace Camoo\Enkap\Api\Data;
 
-interface SmobilpayInterface /*extends \Magento\Payment\Model\MethodInterface*/
+interface SmobilpayInterface
 {
     public const ENTITY_ID = 'id';
     public const ORDER_ID = 'order_id';
