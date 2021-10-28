@@ -5,10 +5,42 @@ namespace Camoo\Enkap\Model;
 use Camoo\Enkap\Api\Data\SmobilpayInterface;
 use Datetime;
 use Exception;
+use Magento\Framework\Data\Collection\AbstractDb;
+use Magento\Framework\HTTP\PhpEnvironment\RemoteAddress;
 use Magento\Framework\Model\AbstractModel;
+use Magento\Framework\Model\Context;
+use Magento\Framework\Model\ResourceModel\AbstractResource;
+use Magento\Framework\Registry;
 
+# \Magento\Payment\Model\Method\AbstractMethod
 class Smobilpay extends AbstractModel implements SmobilpayInterface
 {
+    protected $_code = 'custompayment';
+    /**
+     * @var RemoteAddress
+     */
+    private $remoteAddress;
+
+    /**
+     * @param Context $context
+     * @param Registry $registry
+     * @param RemoteAddress $remoteAddress
+     * @param AbstractResource|null $resource
+     * @param AbstractDb|null $resourceCollection
+     * @param array $data
+     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
+     */
+    public function __construct(
+        Context $context,
+        Registry $registry,
+        RemoteAddress $remoteAddress,
+        AbstractResource $resource = null,
+        AbstractDb $resourceCollection = null,
+        array $data = [])
+    {
+        $this->remoteAddress = $remoteAddress;
+        parent::__construct($context, $registry, $resource, $resourceCollection, $data);
+    }
 
     /**
      * Resource initialization
@@ -141,8 +173,9 @@ class Smobilpay extends AbstractModel implements SmobilpayInterface
     /**
      * Set Client IP.
      */
-    public function setClientIp(string $ip): Smobilpay
+    public function setClientIp(?string $ip = null): Smobilpay
     {
+        $ip = $ip ?? $this->remoteAddress->getRemoteAddress();
         return $this->setData(self::CLIENT_IP, $ip);
     }
 

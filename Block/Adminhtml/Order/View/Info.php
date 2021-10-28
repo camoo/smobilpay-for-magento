@@ -5,20 +5,34 @@
  */
 namespace Camoo\Enkap\Block\Adminhtml\Order\View;
 
+use Camoo\Enkap\Model\Smobilpay;
+use Magento\Framework\App\ObjectManager;
+use Magento\Sales\Model\Order;
+
 class Info extends \Magento\Sales\Block\Adminhtml\Order\View\Info
 {
-    public function getCustomOrderUrl($order)
+    public function getCustomOrderUrl(Order $order)
     {
        return $this->getUrl('enkap/status/index', ['order_id' => $order->getId()]);
     }
 
-    public function getOrderTransactionId($order)
+    /**
+     * @param  Order $order
+     * @return string
+     */
+    public function getOrderTransactionId(Order $order): string
     {
-       return $order->getOrderTransactionId();
+        $objectManager = ObjectManager::getInstance();
+        /** @var Smobilpay $paymentTransaction */
+        $paymentTransaction = $objectManager->create(Smobilpay::class)->load($order->getEntityId(), 'order_id');
+       return $paymentTransaction->getOrderTransactionId();
     }
 
-    public function getMerchantReference($order)
+    public function getMerchantReference(Order $order): string
     {
-       return $order->getMerchantReference();
+        $objectManager = ObjectManager::getInstance();
+        /** @var Smobilpay $paymentTransaction */
+        $paymentTransaction = $objectManager->create(Smobilpay::class)->load($order->getEntityId(), 'order_id');
+       return $paymentTransaction->getMerchantReferenceId();
     }
 }

@@ -20,7 +20,7 @@ class TransactionData
     {
         $connection = $this->resource->getConnection();
         $tableName = $this->resource->getTableName('smobilpay_payment_transaction');
-        return $connection->fetchAssoc("SELECT `merchant_reference_id`, `order_transaction_id`, `status` FROM " . $tableName . " WHERE `order_id` =:id", [
+        return $connection->fetchAssoc("SELECT `merchant_reference`, `order_transaction_id`, `status` FROM " . $tableName . " WHERE `order_id` =:id", [
             'id' => $entityId
         ]);
     }

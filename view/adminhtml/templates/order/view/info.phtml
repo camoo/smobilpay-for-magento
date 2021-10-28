@@ -130,11 +130,18 @@ $allowedAddressHtmlTags = ['b', 'br', 'em', 'i', 'li', 'ol', 'p', 'strong', 'sub
                 <?php endif; ?>
             </table>
             </div>
+            <?php
+            if (in_array($order->getStatus(), ['pending', 'in_progress', 'initialised', 'created'])){
+            ?>
             <div class="actions">
+
                 <a href="<?= $block->getCustomOrderUrl($order) ?>">
                     <span><?= $block->escapeHtml(__('Refresh status')) ?></span>
                 </a>
             </div>
+            <?php
+                }
+            ?>
         </div>
 
         <div class="admin__page-section-item order-account-information">

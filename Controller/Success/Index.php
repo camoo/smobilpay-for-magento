@@ -4,12 +4,14 @@ namespace Camoo\Enkap\Controller\Success;
 
 require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
 
-use \Magento\Framework\App\Action\HttpGetActionInterface;
+use Camoo\Enkap\Model\Smobilpay;
+use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\ObjectManager;
-use \Magento\Framework\Controller\Result\RedirectFactory;
-use \Magento\Framework\App\RequestInterface;
-use \Enkap\OAuth\Services\StatusService;
-use \Camoo\Enkap\Helper\Credentials;
+use Magento\Framework\Controller\Result\RedirectFactory;
+use Magento\Framework\App\RequestInterface;
+use Enkap\OAuth\Services\StatusService;
+use Camoo\Enkap\Helper\Credentials;
+use Magento\Sales\Model\Order;
 
 class Index implements HttpGetActionInterface
 {
@@ -45,8 +47,18 @@ class Index implements HttpGetActionInterface
         $sandbox = (bool)$this->credentials->getGeneralConfig('sandbox');
 
         $objectManager = ObjectManager::getInstance();
-        $order = $objectManager->create('Magento\Sales\Model\Order')->load(array_key_first($this->request->getParams()), 'merchant_reference');
-        $order_transaction_id = $order->getOrderTransactionId();
+
+        $referenceId = array_key_first($this->request->getParams());
+
+
+        /** @var Smobilpay $paymentTransaction */
+        $paymentTransaction = $objectManager->create(Smobilpay::class)->load($referenceId, 'merchant_reference');
+        $oderIdentity = $paymentTransaction->getOrderId();
+
+        /** @var Order $order */
+        $order = $objectManager->create(Order::class)->load($oderIdentity);
+
+        $order_transaction_id = $paymentTransaction->getOrderTransactionId();
         $payment_status = $this->request->getParam('status');
 
         $statusService = new StatusService($key, $secret, [], $sandbox);
@@ -54,14 +66,11 @@ class Index implements HttpGetActionInterface
 
         // Update your database
         $order->setStatus(strtolower($payment_status));
+        $paymentTransaction->setStatus($payment_status);
+        $paymentTransaction->setClientIp();
+        $paymentTransaction->save();
         $order->save();
-
         $redirect = $this->redirectFactory->create();
-
-        if ($status->confirmed()){
-            // Payment successfully completed
-            // send Item to user/customer
-        }
 
         if ($status->failed() || $status->canceled()) {
             // delete that reference from your Database

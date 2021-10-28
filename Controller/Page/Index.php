@@ -15,7 +15,6 @@ use Magento\Framework\Controller\Result\RedirectFactory;
 use Enkap\OAuth\Services\OrderService;
 use Enkap\OAuth\Model\Order;
 use Camoo\Enkap\Helper\Credentials;
-use Magento\Tests\NamingConvention\true\string;
 use stdClass;
 use Throwable;
 
@@ -71,7 +70,7 @@ class Index implements HttpGetActionInterface
             'currency' => 'XAF',
             'items' => $products
         ];
-
+        $redirect = $this->redirectFactory->create();
         try {
             $order->fromStringArray($data);
             $response = $orderService->place($order);
@@ -85,14 +84,14 @@ class Index implements HttpGetActionInterface
             $smobilpayModel->setMerchantReferenceId($merchantReference);
             $smobilpayModel->setOrderTransactionId($response->getOrderTransactionId());
             $smobilpayModel->save();
-            $redirect = $this->redirectFactory->create();
-            $redirect->setUrl($response->getRedirectUrl());
 
-            return $redirect;
+            $redirect->setUrl($response->getRedirectUrl());
 
         } catch (Throwable $e) {
             var_dump($e->getMessage());
+            $redirect->setPath('checkout/cart');
         }
+        return $redirect;
     }
 
     protected function getCurrencyRate(string $siteCurrency)
