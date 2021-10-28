@@ -5,6 +5,7 @@ namespace Camoo\Enkap\Controller\Success;
 require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
 
 use \Magento\Framework\App\Action\HttpGetActionInterface;
+use Magento\Framework\App\ObjectManager;
 use \Magento\Framework\Controller\Result\RedirectFactory;
 use \Magento\Framework\App\RequestInterface;
 use \Enkap\OAuth\Services\StatusService;
@@ -13,7 +14,7 @@ use \Camoo\Enkap\Helper\Credentials;
 class Index implements HttpGetActionInterface
 {
     /**
-     * @var \Magento\Framework\Controller\Result\RedirectFactory;
+     * @var RedirectFactory;
      */
     protected $redirectFactory;
     /**
@@ -27,6 +28,8 @@ class Index implements HttpGetActionInterface
 
     /**
      * @param RedirectFactory $redirectFactory
+     * @param RequestInterface $request
+     * @param Credentials $credentials
      */
     public function __construct(RedirectFactory $redirectFactory, RequestInterface $request, Credentials $credentials) {
         $this->redirectFactory = $redirectFactory;
@@ -39,9 +42,9 @@ class Index implements HttpGetActionInterface
         $key = $this->credentials->getGeneralConfig('public');
         $secret = $this->credentials->getGeneralConfig('private');
 
-        $sandbox = !$this->credentials->getGeneralConfig('sandbox') ? false : true;
+        $sandbox = (bool)$this->credentials->getGeneralConfig('sandbox');
 
-        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $objectManager = ObjectManager::getInstance();
         $order = $objectManager->create('Magento\Sales\Model\Order')->load(array_key_first($this->request->getParams()), 'merchant_reference');
         $order_transaction_id = $order->getOrderTransactionId();
         $payment_status = $this->request->getParam('status');

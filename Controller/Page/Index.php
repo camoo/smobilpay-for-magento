@@ -7,6 +7,7 @@ require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
 
 use Camoo\Cache\Cache;
 use Camoo\Cache\CacheConfig;
+use Camoo\Enkap\Model\Smobilpay;
 use Magento\Checkout\Model\Type\Onepage;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\ObjectManager;
@@ -75,12 +76,15 @@ class Index implements HttpGetActionInterface
             $order->fromStringArray($data);
             $response = $orderService->place($order);
 
-            // Save references into your Database
-            $shopOrder->setOrderTransactionId($response->getOrderTransactionId());
-            $shopOrder->setMerchantReference($merchantReference);
             $shopOrder->setStatus(\Magento\Sales\Model\Order::STATE_PENDING_PAYMENT);
             $shopOrder->save();
-
+            /** @var Smobilpay $smobilpayModel */
+            $smobilpayModel = $objectManager->create(Smobilpay::class);
+            // Save references into your Database
+            $smobilpayModel->setOrderId($shopOrder->getEntityId());
+            $smobilpayModel->setMerchantReferenceId($merchantReference);
+            $smobilpayModel->setOrderTransactionId($response->getOrderTransactionId());
+            $smobilpayModel->save();
             $redirect = $this->redirectFactory->create();
             $redirect->setUrl($response->getRedirectUrl());
 

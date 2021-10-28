@@ -17,7 +17,7 @@
         <column xsi:type="varchar" name="order_transaction_id" nullable="true" length="100" comment="Txn ID"/>
         <column xsi:type="varchar" name="status" nullable="true" length="50" comment="status Information"/>
         <column xsi:type="varbinary" name="remote_ip" nullable="true" length="64" comment="Remote Ip Information"/>
-        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="true" comment="Created At"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
         <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="true" comment="Updated At"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="id"/>
