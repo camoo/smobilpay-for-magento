@@ -1,4 +1,4 @@
-# SmobilPay for e-commerce - Mobile Money Gateway for Magento
+# SmobilPay for e-commerce - Mobile Money Gateway for Magento 2.4.x +
 
 SmobilPay for Magento is a simple and powerful Payment Gateway module.
 
