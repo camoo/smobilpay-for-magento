@@ -37,12 +37,19 @@ The smobilpay platform Boasts of being a major partner with giant service provid
 
 
 ## installation and Manage the Gateway
+We assume you already installed Magento 2.4.x and configured it successfully
+
+### Requirements :
+* Magento Version:2.4 or higher
+* Tested up to:2.4.3-p1
+* PHP Version:7.3 or higher
+
 1. Download the [smobilpay.magento.zip file](https://github.com/camoo/smobilpay-for-magento/releases/download/1.0.0/smobilpay.magento.zip)
-2. With command line (CLI) move into `app` from your Magento root. `cd /path/to/magento/app`
+2. With command line (CLI) move into `app` from your Magento root. `cd /path/to/magento && cd app`
 3. Create code folder if missing: `mkdir -p code`
 4. Move into `code` : `cd code` and copy the zip file here `cp /path/to/zip/smobilpay.magento.zip .`
 5. Unzip  `unzip smobilpay.magento.zip`.
-6. Run `php bin/magento setup:upgrade`.
+6. Run `cd /path/to/magento && php bin/magento setup:upgrade`.
 7. In your Magento Dashboard go to \"STORES\" -> \"Configuration\" .
 8.  Look for the tab \"SALES\" -> \"Payment Methods\".
 10. Look for \"SmobilPay for e-commerce\" and select it to add your API credentials.
