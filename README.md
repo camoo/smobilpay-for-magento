@@ -40,6 +40,7 @@ The smobilpay platform Boasts of being a major partner with giant service provid
 We assume you already installed Magento 2.4.x and configured it successfully
 
 ### Requirements :
+* Command line (CLI) access to the magento installation.
 * Magento Version:2.4 or higher
 * Tested up to:2.4.3-p1
 * PHP Version:7.3 or higher
