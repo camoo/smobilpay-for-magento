@@ -53,7 +53,7 @@ class Index implements HttpGetActionInterface
             $product['itemId'] = $item->getProductId();
             $product['particulars'] = $item->getName();
             $product['unitCost'] = (float)ceil($item->getPrice() * $currencyRate);
-            $product['subTotal'] = (float)ceil($item->getPrice() * $currencyRate);
+            $product['subTotal'] = (float)ceil($item->getPrice() * $currencyRate * (int)$item->getQtyOrdered());
             $product['quantity'] = (int)$item->getQtyOrdered();
             $products[] = $product;
         }
@@ -88,7 +88,7 @@ class Index implements HttpGetActionInterface
             $redirect->setUrl($response->getRedirectUrl());
 
         } catch (Throwable $e) {
-            var_dump($e->getMessage());
+           // debug exception error var_dump($e->getMessage());
             $redirect->setPath('checkout/cart');
         }
         return $redirect;
